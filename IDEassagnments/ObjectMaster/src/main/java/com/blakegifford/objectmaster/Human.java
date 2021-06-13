@@ -4,11 +4,11 @@ public class Human {
 	//humans have 4 properties
 	//strength-3, intelegence-3, stealth-3, health-100
 	//each human has ability to attack and takes damage of strength
-	private Integer strength = 3;
-	private String name;
-	private Integer intelligence = 3;
-	private Integer stealth = 3;
-	private Integer health = 100;
+	protected Integer strength = 3;
+	protected String name;
+	protected Integer intelligence = 3;
+	protected Integer stealth = 3;
+	protected Integer health = 100;
 	
 	//add attack human method
 	
