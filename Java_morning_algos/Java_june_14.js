@@ -72,5 +72,7 @@ myStack.push(20);
 myStack.push(30);
 myStack.push(40);
 
-console.log(countStack(myStack))
+console.log(countStack(myStack));
+console.log(countStack(myStack));
+console.log(countStack(myStack));
 
