@@ -13,10 +13,19 @@ class slStack {
     }
 
     // add to top
-    push(newNode) {}
+    push(newNode) {
+        let node = new Node(newNode);
+        node.next = this.top;
+        this.top = node;
+    }
 
     // remove from top
-    pop() {}
+    pop() {
+        let grabtop = this.top;
+        this.top = grabtop.next;
+        grabtop.next = null;
+        return grabtop;
+    }
 
     // aka check top
     peek() {
@@ -37,4 +46,31 @@ class slStack {
 // you may use one stack or array as additional storage
 // the given stack must be returned back to it's original order
 // you may only use public stack methods push pop peek isempty
-function countStack(stack) {};
+function countStack(stack) {
+    let tempStack = new slStack();
+    let count = 0;
+    while (stack){
+        if (stack.isEmpty()) break;
+        else {
+            tempStack.push(stack.pop());
+            count++;
+        }
+    }
+
+    while(tempStack){
+        if (tempStack.isEmpty()) break;
+        else {
+            stack.push(tempStack.pop());
+        }
+    }
+
+    return count;
+};
+var myStack = new slStack();
+myStack.push(10);
+myStack.push(20);
+myStack.push(30);
+myStack.push(40);
+
+console.log(countStack(myStack))
+
