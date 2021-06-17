@@ -52,7 +52,11 @@ class Node {
 // return the queue back to it's original order when you are done
 // you are not allowed to linearly traverse the queue
 // only use public methods enqueue, dequeue, peek, isempty
-function readQueue(queue) {}
+function readQueue(queue) {
+    while(next){
+        
+    }
+}
 
 let n1 = new Node(1);
 let n1 = new Node(2);
