@@ -9,5 +9,6 @@
 </head>
 <body>
 	<h1>Welcome, <c:out value="${name}"/></h1>
+	
 </body>
 </html>
