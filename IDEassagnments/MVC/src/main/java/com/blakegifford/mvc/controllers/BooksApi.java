@@ -1,6 +1,6 @@
 package com.blakegifford.mvc.controllers;
 
-import java.awt.print.Book;
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blakegifford.mvc.services.BookService;
+import com.blakegifford.mvc.models.Book;
 
 @RestController
 public class BooksApi {
@@ -25,11 +26,8 @@ public class BooksApi {
     }
     
     @RequestMapping(value="/api/books", method=RequestMethod.POST)
-    public Book create(@RequestParam(value="title") String title, 
-    					@RequestParam(value="description") String desc, 
-    					@RequestParam(value="language") String lang, 
-    					 @RequestParam(value="pages") Integer numOfPages) {
-        Book book = new Book(title, desc, lang, numOfPages);
+    public Book create(@RequestParam(value="title") String title, @RequestParam(value="description") String desc, @RequestParam(value="language") String lang, @RequestParam(value="pages") Integer numOfPages) {
+        Book book =  new Book(title, desc, lang, numOfPages);
         return bookService.createBook(book);
     }
     

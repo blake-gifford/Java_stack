@@ -1,11 +1,11 @@
 package com.blakegifford.mvc.services;
 
-import java.awt.print.Book;
+//import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
+import com.blakegifford.mvc.models.Book;
 import com.blakegifford.mvc.repositories.BookRepository;
 
 @Service
