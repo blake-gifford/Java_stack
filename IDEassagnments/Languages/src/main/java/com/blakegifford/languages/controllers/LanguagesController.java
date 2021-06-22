@@ -25,32 +25,36 @@ import com.blakegifford.languages.services.LanguageService;
 	        this.languageService = languageService;
 	    }
 	    
-	    @RequestMapping("/Languages")
+	    @RequestMapping("/languages")
 	    public String index(Model model) {
-	        List<Language> Languages = languageService.allLanguages();
-	        model.addAttribute("Languages", Languages);
-	        return "/Languages/index.jsp";
+	        List<Language> languages = languageService.allLanguages();
+	        model.addAttribute("languages", languages);
+	        return "/languages/index.jsp";
 	    }
 	    
 	    @RequestMapping("/languages/new")
-	    public String newLanguage(@ModelAttribute("Language") Language Language) {
-	        return "/Languages/new.jsp";
+	    public String newLanguage(@ModelAttribute("language") Language language) {
+	        return "/languages/new.jsp";
 	    }
 	    @RequestMapping(value="/languages", method=RequestMethod.POST)
 	    public String create(@Valid @ModelAttribute("language") Language language, BindingResult result) {
 	        if (result.hasErrors()) {
-	            return "/Languages/new.jsp";
+	            return "/languages/new.jsp";
 	        } else {
 	            languageService.createLanguage(language);
-	            return "redirect:/Languages";
+	            return "redirect:/languages";
 	        }
 	    }
 	    
-	    @RequestMapping("/Languages/{id}/edit")
-	    public String edit(@PathVariable("id") Long id, Model model) {
-//	        Language Language = languageService.updateLanguage(id, name, creator, version);
+	    @RequestMapping("/language/{id}/edit")
+	    public String editLanguage(@PathVariable("id") Long id, Model model) {
 	        Language language = languageService.findOneById(id);
-	        model.addAttribute("Language", language);
-	        return "/Languages/edit.jsp";
+	        model.addAttribute("language", language);
+	        return "/languages/edit.jsp";
 	    }
+	    
+//	    @RequestMapping(value="/language/{id}", method=RequestMethod.PUT)
+//	    public String update(@PathVariable("id") Long id) {
+//	    	
+//	    }
 }
