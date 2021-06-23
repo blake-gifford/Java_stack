@@ -100,9 +100,7 @@ class DLList {
     }
 
     // pop from head
-    removeHead() {
-        if(this.isEmpty())
-    }
+    removeHead() {}
 }
 
 let myDoublyList = new DoublyLinkedList(10);
