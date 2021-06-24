@@ -66,6 +66,14 @@ public class Dojo {
 		this.updatedAt = updatedAt;
 	}
 
+	public List<Ninja> getNinjas() {
+		return ninjas;
+	}
+
+	public void setNinjas(List<Ninja> ninjas) {
+		this.ninjas = ninjas;
+	}
+
 	public Dojo() {
 		
 	}

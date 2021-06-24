@@ -2,10 +2,14 @@ package com.blakegifford.dojosandninjas.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.blakegifford.dojosandninjas.models.Ninja;
 import com.blakegifford.dojosandninjas.services.NinjaService;
@@ -25,8 +29,18 @@ public class NinjasController {
 		return "/ninja/new.jsp";
 	}
 	
-	@RequestMapping("/ninja")
-	public String newNinja(@ModelAttribute("ninja") Ninja ninja) {
-		return "/ninja/";
+	@RequestMapping("/ninja/new")
+	public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model model) {
+		return "/ninja/new.jsp";
+	}
+	
+	@RequestMapping(value="/ninja", method=RequestMethod.POST)
+	public String create(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/ninja/new.jsp";
+		}else {
+			ninjaService.createNinja(ninja);
+			return "redirect:/ninjas";
+		}
 	}
 }

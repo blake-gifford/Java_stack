@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="/ninjas" method="post" modelAttribute="ninja">
+	<form:form action="/ninja" method="post" modelAttribute="ninja">
 		<p>
 			<form:label path="dojo"></form:label>
 			<form:errors path="dojo" />

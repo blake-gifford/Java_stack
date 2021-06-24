@@ -10,7 +10,7 @@
 <body>
 
 	<h1><c:out value="${dojo.name} Location Ninjas" /></h1>
-	
+	<a href="/ninja/new">Create Ninja!</a>
 		<table>
 		<thead>
 			<tr>
@@ -20,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ninja}" var="n">
+			 <c:forEach items="${ninja}" var="n">
 				<tr>
 					<td><c:out value="${n.firstName}"/></td>
 					<td><c:out value="${n.lastName}"/></td>

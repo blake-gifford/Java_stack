@@ -11,8 +11,8 @@
 	<h1>All Dojos</h1>
 	<h2><a href="/dojo">Add new Dojo!</a></h2>
 	
-		<c:forEach items="${dojo}" var="d">
-			<p><a href="/dojo/{id}"><c:out value="${d.name }"></c:out></a></p>
+		<c:forEach items="${dojos}" var="d">
+			<p><a href="/dojo/${d.id}"><c:out value="${d.name}"></c:out></a></p>
 		</c:forEach>
 	
 </body>

@@ -1,5 +1,8 @@
 package com.blakegifford.dojosandninjas.controllers;
 
+
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.List;
 
 //import java.util.List;
@@ -11,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,22 +30,28 @@ public class DojosController {
 		this.dojoService = dojoService;
 	}
 	
+	@RequestMapping("/")
+	public String redirect() {
+		return "redirect:/alldojos";
+	}
+	
 	@RequestMapping("/alldojos")
-	public String allDojos(Model model) {
-		List<Dojo> dojo = dojoService.allDojos();
-		model.addAttribute("dojo", dojo);
+	public String index(Model model) {
+		List<Dojo> dojos = dojoService.allDojos();
+		model.addAttribute("dojos", dojos);
 		return "/dojo/allDojos.jsp";
 	}
 	
 	@RequestMapping("/dojo/{id}")
-	public String index(Model model, @PathVariable("id") Long id) {
+	public String showDojo(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("dojo", dojoService.findDojo(id));
 		return "/dojo/show.jsp";
+
 	}
 	
 	@RequestMapping("/dojo")
-    public String newDojo(Model model, @ModelAttribute("dojo") Dojo dojo) {
-		model.addAttribute("dojo", dojoService.allDojos());
+    public String newDojo(@ModelAttribute("dojo") Dojo dojo) {
+//		model.addAttribute("dojo", dojoService.allDojos());
         return "/dojo/index.jsp";
     }
     @RequestMapping(value="/dojo/new", method=RequestMethod.POST)
@@ -48,8 +59,10 @@ public class DojosController {
         if (result.hasErrors()) {
             return "/dojo/index.jsp";
         } else {
-        	Dojo newDojo = dojoService.createDojo(dojo);
-            return "redirect:/dojo/" + newDojo.getId();
+        	dojoService.createDojo(dojo);
+//        	Dojo newDojo = dojoService.createDojo(dojo);
+//            return "redirect:/dojo/" + newDojo.getId();
+        	return "redirect:/alldojos";
         }
     }
 	
