@@ -32,4 +32,9 @@ public class DojoService {
 			return null;
 		}
 	}
+
+	public Object findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

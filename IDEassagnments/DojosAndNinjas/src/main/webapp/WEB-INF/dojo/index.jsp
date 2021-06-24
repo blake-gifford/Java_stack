@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>New Dojo</h1>
-	<form:form action="/dojos" method="post" modelAttribute="dojo">
+	<form:form action="/alldojos" method="post" modelAttribute="dojo">
 		<p>
 			<form:label path="name">Name</form:label>
 			<form:errors path="name" />
@@ -17,5 +17,6 @@
 		</p>
 		<input type="submit" value="Submit"/>
 	</form:form>
+	<a href="/alldojos">All Dojos</a>
 </body>
 </html>

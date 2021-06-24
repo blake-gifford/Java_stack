@@ -20,11 +20,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ninja}" var="language">
+			<c:forEach items="${ninja}" var="n">
 				<tr>
-					<td><c:out value="${ninja.firstName}"/></td>
-					<td><c:out value="${ninja.lastName}"/></td>
-					<td><c:out value="${ninja.age}"/></td>
+					<td><c:out value="${n.firstName}"/></td>
+					<td><c:out value="${n.lastName}"/></td>
+					<td><c:out value="${n.age}"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>
