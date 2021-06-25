@@ -20,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			 <c:forEach items="${ninja}" var="n">
+			 <c:forEach items="${ninjas}" var="n">
 				<tr>
 					<td><c:out value="${n.firstName}"/></td>
 					<td><c:out value="${n.lastName}"/></td>
