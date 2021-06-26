@@ -39,23 +39,23 @@ public class ProductController {
 	}
 	
 	//show
-	@RequestMapping("/products/{id}")
-	public String showProduct(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("product", productService.findProduct(id));
-		model.addAttribute("category", categoryService.findCategory(id));
+	@RequestMapping("/products/{prod_id}")
+	public String showProduct(@PathVariable("prod_id") Long prod_id, Model model) {
+		model.addAttribute("product", productService.findProduct(prod_id));
+		model.addAttribute("category", categoryService.allCategory());
 		return "product/show.jsp";
 	}
 	
 	
-	@RequestMapping(value="/products/{id}/edit", method="RequestMethod.POST")
-	public String addProductToCategory(@PathVariable("id") Long id, @RequestParam("id") Long id) {
-		Product myProduct = productService.findProduct(id);
-		Category myCategory = categoryService.findCategory();
+	@RequestMapping(value="/products/{id}/edit", method=RequestMethod.POST)
+	public String addProductToCategory(@PathVariable("prod_id") Long prod_id, @RequestParam("cat_id") Long cat_id) {
+		Product myProduct = productService.findProduct(prod_id);
+		Category myCategory = categoryService.findCategory(cat_id);
 		
-		myProduct.getCategory.add(myCategory);
+		myProduct.getCategory().add(myCategory);
 		productService.editProduct(myProduct);
 		
-		return "redirect:/products/" + id + "/edit";
+		return "redirect:/products/" + prod_id + "/edit";
 	}
 	
 	//create

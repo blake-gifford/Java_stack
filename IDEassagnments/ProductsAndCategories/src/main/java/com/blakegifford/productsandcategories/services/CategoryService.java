@@ -9,12 +9,14 @@ import com.blakegifford.productsandcategories.models.Category;
 import com.blakegifford.productsandcategories.repos.CategoryRepo;
 import com.blakegifford.productsandcategories.repos.ProductRepo;
 
+
+
 @Service
 public class CategoryService {
 
 	
-	private final CategoryRepo = categoryRepo;
-	private final ProductRepo = productRepo;
+	private final CategoryRepo categoryRepo;
+	private final ProductRepo productRepo;
 	
 	public CategoryService(CategoryRepo categoryRepo, ProductRepo productRepo) {
 		this.categoryRepo = categoryRepo;
@@ -22,7 +24,7 @@ public class CategoryService {
 	}
 	
 	public List<Category> allCategory(){
-		return CategoryRepo.findAll();
+		return categoryRepo.findAll();
 	}
 	
 //	public Category createCategoryWithProduct(String categoryName) {
