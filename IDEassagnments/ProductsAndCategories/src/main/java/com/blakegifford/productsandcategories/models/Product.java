@@ -32,7 +32,13 @@ public class Product {
 	@NotNull
 	@Size(min = 1, max = 200, message="this needs to be longer")
 	private String name;
+	@NotNull
+	@Size(min = 2, max = 250, message="this needs to be longer")
+	private String description;
+	@NotNull
+	private Integer price;
 	
+
 	@ManyToMany(fetch= FetchType.LAZY)
 	@JoinTable(
 			name = "products_and_categories",
@@ -90,6 +96,20 @@ public class Product {
 		this.updatedAt = updatedAt;
 	}
     
-    
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 	
 }

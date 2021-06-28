@@ -1,5 +1,7 @@
 package com.blakegifford.productsandcategories.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -31,23 +33,34 @@ public class ProductController {
 //	@Autowired
 //	private CategoryService categoryService;
 	
+	@RequestMapping("/")
+	public String redirect() {
+		return "redirect:/products/new";
+	}
+	
+	
 	//show all
 	@RequestMapping("/products/new")
-	public String newProduct(@ModelAttribute("product") Model model) {
-		return "/products/showAll";
+	public String newProduct(@ModelAttribute("product") Product product) {
+//		return "/products/showAll";
+		return "/products/new.jsp";
 				
 	}
 	
 	//show
-	@RequestMapping("/products/{prod_id}")
-	public String showProduct(@PathVariable("prod_id") Long prod_id, Model model) {
-		model.addAttribute("product", productService.findProduct(prod_id));
-		model.addAttribute("category", categoryService.allCategory());
-		return "product/show.jsp";
+	@RequestMapping("/products")
+//	@RequestMapping("/products")
+//	public String showProduct(@PathVariable("prod_id") Long prod_id, Model model) {
+	public String showProduct(Model model) {
+		List<Product> product = productService.allProducts();
+		model.addAttribute("product", product);
+//		model.addAttribute("product", productService.findProduct(prod_id));
+//		model.addAttribute("category", categoryService.allCategory());
+		return "products/show.jsp";
 	}
 	
 	
-	@RequestMapping(value="/products/{id}/edit", method=RequestMethod.POST)
+	@RequestMapping(value="/products/{prod_id}/edit", method=RequestMethod.POST)
 	public String addProductToCategory(@PathVariable("prod_id") Long prod_id, @RequestParam("cat_id") Long cat_id) {
 		Product myProduct = productService.findProduct(prod_id);
 		Category myCategory = categoryService.findCategory(cat_id);
@@ -60,12 +73,12 @@ public class ProductController {
 	
 	//create
 	@RequestMapping(value="/products", method=RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("product") Product product, BindingResult result) {
+	public String create(@Valid @ModelAttribute("product") Product product, BindingResult result, @PathVariable("prod_id") Long prod_id) {
 		if(result.hasErrors()) {
 			return "/products/new.jsp";
 		}else {
 			productService.createProduct(product);
-			return "redirect:/products";
+			return "redirect:/products/" + prod_id;
 		}
 	}
 }
