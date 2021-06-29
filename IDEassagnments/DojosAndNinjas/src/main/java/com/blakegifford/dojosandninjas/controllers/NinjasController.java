@@ -48,6 +48,7 @@ public class NinjasController {
 			return "/ninja/new.jsp";
 		}else {
 			ninjaService.createNinja(ninja);
+			
 			return "redirect:/alldojos" + ninja.getDojo().getId();
 		}
 	}
